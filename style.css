@@ -12,9 +12,10 @@
 color: #000!important;
 }
 
-.cmb2-checkbox-list.cmb2-list.ul{
-    list-style-type: none!important;
+.entry-content ul{
+list-style-type: none!important;
 }
+
 
 textarea#submitted_post_content{
 	width: 100%;
