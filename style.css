@@ -19,7 +19,7 @@ list-style-type: none!important;
 .entry-content ol,
 .entry-content ul {
 	margin-bottom: 30px;
-	margin-left: 40px;
+	margin-left: 0px!important;
 }
 
 .entry-content ol > li {
