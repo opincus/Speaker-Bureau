@@ -377,7 +377,7 @@ function wds_frontend_form_register() {
     'name'     => 'Test Taxonomy Multicheck',
     'desc'     => 'Description Goes Here',
     'id'       => 'taxonomy_multicheck',
-    'taxonomy' => 'topics', //Enter Taxonomy Slug
+    'taxonomy' => 'category', //Enter Taxonomy Slug
     'type'     => 'taxonomy_multicheck',
 	) );
 
