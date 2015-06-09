@@ -379,6 +379,7 @@ function wds_frontend_form_register() {
     'id'       => 'taxonomy_multicheck',
     'taxonomy' => 'category', //Enter Taxonomy Slug
     'type'     => 'taxonomy_multicheck',
+	 'options' => cmb2_get_term_options(),
 	) );
 
 	$cmb->add_field( array(
@@ -1296,3 +1297,29 @@ add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
     function safely_add_stylesheet() {
         wp_enqueue_style( 'prefix-style', plugins_url('style.css', __FILE__) );
     }
+
+	
+	/**
+ * Gets a number of terms and displays them as options
+ * @param  string       $taxonomy Taxonomy terms to retrieve. Default is category.
+ * @param  string|array $args     Optional. get_terms optional arguments
+ * @return array                  An array of options that matches the CMB2 options array
+ */
+function cmb2_get_term_options( $taxonomy = 'category', $args = array() ) {
+
+    $args['taxonomy'] = $taxonomy;
+    // $defaults = array( 'taxonomy' => 'category' );
+    $args = wp_parse_args( $args, array( 'taxonomy' => 'category' ) );
+    $taxonomy = $args['taxonomy'];
+    $terms = (array) get_terms( $taxonomy, $args );
+
+    // Initate an empty array
+    $term_options = array();
+    if ( ! empty( $terms ) ) {
+        foreach ( $terms as $term ) {
+            $term_options[ $term->term_id ] = $term->name;
+        }
+    }
+
+    return $term_options;
+}
