@@ -12,6 +12,11 @@
 color: #000!important;
 }
 
+.cmb2-list{
+	font-size: 50px;
+}
+
+
 textarea#submitted_post_content{
 	width: 100%;
 	height: 100%;
