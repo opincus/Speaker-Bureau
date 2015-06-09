@@ -16,6 +16,24 @@ color: #000!important;
 list-style-type: none!important;
 }
 
+.entry-content ol,
+.entry-content ul {
+	margin-bottom: 30px;
+	margin-left: 40px;
+}
+
+.entry-content ol > li {
+	list-style-type: decimal;
+}
+
+.entry-content ul > li {
+	list-style-type: none!important;
+}
+
+.entry-content ol ol,
+.entry-content ul ul {
+	margin-bottom: 0;
+}
 
 textarea#submitted_post_content{
 	width: 100%;
