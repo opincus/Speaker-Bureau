@@ -242,6 +242,16 @@ function cmb2_speaker_metabox() {
     'id'   => 'honorarium',
     'type' => 'checkbox'
     ) );
+	
+	
+	$cmb->add_field( array(
+    'name'     => 'Test Taxonomy Multicheck',
+    'desc'     => 'Description Goes Here',
+    'id'       => 'taxonomy_multicheck',
+    'taxonomy' => 'topics', //Enter Taxonomy Slug
+    'type'     => 'taxonomy_multicheck',
+	) );
+
     
 	$cmb->add_field( array(
     'name' => 'Topics',
