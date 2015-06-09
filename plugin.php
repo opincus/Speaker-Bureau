@@ -243,16 +243,7 @@ function cmb2_speaker_metabox() {
     'type' => 'checkbox'
     ) );
 	
-	
-	$cmb->add_field( array(
-    'name'     => 'Test Taxonomy Multicheck',
-    'desc'     => 'Description Goes Here',
-    'id'       => 'taxonomy_multicheck',
-    'taxonomy' => 'topics', //Enter Taxonomy Slug
-    'type'     => 'taxonomy_multicheck',
-	) );
-
-    
+   
 	$cmb->add_field( array(
     'name' => 'Topics',
     'desc' => 'Analysis',
@@ -381,9 +372,16 @@ function wds_frontend_form_register() {
 		'id'   => 'organization',
 		'type' => 'text',
 	) );
-    
-    
-$cmb->add_field( array(
+
+	$cmb->add_field( array(
+    'name'     => 'Test Taxonomy Multicheck',
+    'desc'     => 'Description Goes Here',
+    'id'       => 'taxonomy_multicheck',
+    'taxonomy' => 'topics', //Enter Taxonomy Slug
+    'type'     => 'taxonomy_multicheck',
+	) );
+
+	$cmb->add_field( array(
     'name' => 'Analysis',
     'desc' => '',
     'id'   => 'anl',
