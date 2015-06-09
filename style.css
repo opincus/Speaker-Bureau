@@ -9,11 +9,6 @@
 }
 
 
-.entry-content code {
-	background-color: #000;
-	color: #000;
-}
-
 textarea#submitted_post_content{
 	width: 100%;
 	height: 100%;
