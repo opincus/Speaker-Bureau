@@ -1188,3 +1188,13 @@ function cmb2_types_esc_address_field( $check, $meta_value, $field_args, $field_
 	return $meta_value;
 }
 add_filter( 'cmb2_types_esc_address', 'cmb2_types_esc_address_field', 10, 4 );
+
+
+add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
+
+    /**
+     * Add stylesheet to the page
+     */
+    function safely_add_stylesheet() {
+        wp_enqueue_style( 'prefix-style', plugins_url('style.css', __FILE__) );
+    }

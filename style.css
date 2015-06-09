@@ -1,0 +1,66 @@
+
+.cmb2-metabox{
+	font-family: "Ek Mukta", sans-serif;
+}
+
+.cmb-th{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+textarea#submitted_post_content{
+	width: 100%;
+	height: 100%;
+}
+
+.adr{
+	float: none;
+	margin-bottom: 20px;
+}
+
+
+select#cmb_address_state {
+     width: 100%; 
+	 height: 100%; 
+}
+
+select#cmb_address_country {
+     width: 100%; 
+	 height: 100%; 
+}
+
+textarea#endorser1_testimonialquote {
+     width: 100%; 
+	 height: 100%; 
+}
+
+textarea#endorser2_testimonialquote {
+     width: 100%; 
+	 height: 100%; 	 
+}
+
+textarea#endorser1_testimonialquote {
+     width: 100%; 
+	 height: 100%; 
+}
+
+textarea#endorser1_presentationsummary {
+     width: 100%; 
+	 height: 100%; 
+}
+
+textarea#endorser2_presentationsummary {
+     width: 100%; 
+	 height: 100%; 
+}
+
+
+
+
+input[type="submit"]{
+	font-family: "Ek Mukta", sans-serif;
+}
+
+.cmb2-wrap.form-table{
+	margin-bottom: 20px;
+}
