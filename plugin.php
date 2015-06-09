@@ -243,7 +243,57 @@ function cmb2_speaker_metabox() {
     'type' => 'checkbox'
     ) );
     
+	$cmb->add_field( array(
+    'name' => 'Analysis',
+    'desc' => '',
+    'id'   => 'anl',
+    'type' => 'checkbox',
+	'before_row'   => '<br /><p>Topics</p>',
+    ) );
     
+	$cmb->add_field( array(
+    'name' => 'Measurement and Evaluation',
+    'desc' => '',
+    'id'   => 'mae',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Instructional Intervention',
+    'desc' => '',
+    'id'   => 'ini',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Process or Tool Intervention',
+    'desc' => '',
+    'id'   => 'pit',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Organizational Design Intervention',
+    'desc' => '',
+    'id'   => 'odi',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'The Business of HPT',
+    'desc' => '',
+    'id'   => 'hpt',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Research to Practice',
+    'desc' => '',
+    'id'   => 'rtp',
+    'type' => 'checkbox'
+    ) );
+		
+	
     
 }
 add_action( 'cmb2_init', 'cmb2_speaker_metabox' );
@@ -324,12 +374,53 @@ function wds_frontend_form_register() {
 	) );
     
     
-    $cmb->add_field( array(
-    'name'     => 'Topics',
-    'desc'     => '',
-    'id'       => 'topics',
-    'taxonomy' => 'topics', //Enter Taxonomy Slug
-    'type'     => 'taxonomy_multicheck',
+$cmb->add_field( array(
+    'name' => 'Analysis',
+    'desc' => '',
+    'id'   => 'anl',
+    'type' => 'checkbox'
+    ) );
+    
+	$cmb->add_field( array(
+    'name' => 'Measurement and Evaluation',
+    'desc' => '',
+    'id'   => 'mae',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Instructional Intervention',
+    'desc' => '',
+    'id'   => 'ini',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Process or Tool Intervention',
+    'desc' => '',
+    'id'   => 'pit',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Organizational Design Intervention',
+    'desc' => '',
+    'id'   => 'odi',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'The Business of HPT',
+    'desc' => '',
+    'id'   => 'hpt',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => 'Research to Practice',
+    'desc' => '',
+    'id'   => 'rtp',
+    'type' => 'checkbox'
     ) );
     
 	$cmb->add_field( array(
