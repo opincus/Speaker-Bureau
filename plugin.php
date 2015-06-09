@@ -36,7 +36,7 @@ $labels = array(
 		'description'         => __( 'Speaker', 'text_domain' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'editor', ),
-		'taxonomies'          => array( 'category', 'post_tag' ),
+		'taxonomies'          => array( 'category', 'topics', 'post_tag' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -327,7 +327,7 @@ function wds_frontend_form_register() {
     $cmb->add_field( array(
     'name'     => 'Topics',
     'desc'     => '',
-    'id'       => 'speaker_topics',
+    'id'       => 'topics',
     'taxonomy' => 'topics', //Enter Taxonomy Slug
     'type'     => 'taxonomy_multicheck',
     ) );
