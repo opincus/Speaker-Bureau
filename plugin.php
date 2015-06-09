@@ -244,7 +244,7 @@ function cmb2_speaker_metabox() {
     ) );
     
 	$cmb->add_field( array(
-    'name' => '',
+    'name' => 'Topics',
     'desc' => 'Analysis',
     'id'   => 'anl',
     'type' => 'checkbox'	
