@@ -9,7 +9,7 @@
 }
 
 .entry-content code{
-color: #000;
+color: #000!important;
 }
 
 textarea#submitted_post_content{
