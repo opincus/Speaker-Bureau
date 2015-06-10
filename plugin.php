@@ -736,15 +736,15 @@ function wds_handle_frontend_new_post_form_submission() {
 
     // Set Taxanomies
     
-    if ( $cmb->get_field( 'anl' ) == 'True' ) {
+    
 		$cat_ids = array( 4 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}
 	
-	if ( $cmb->get_field( 'mae' )== 'True' ) {
 		$cat_ids = array( 6 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}	
+	
+	
+	
     
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
