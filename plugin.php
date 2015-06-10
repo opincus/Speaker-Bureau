@@ -818,8 +818,13 @@ function wds_handle_frontend_new_post_form_submission() {
 	 * Redirect back to the form page with a query variable with the new post ID.
 	 * This will help double-submissions with browser refreshes
 	 */
-	wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
-	exit;
+	//wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
+	//exit;
+    
+    wp_redirect( get_page_by_path( 'speaker_submitted' ) );
+    exit();
+    	
+    
 }
 add_action( 'cmb2_after_init', 'wds_handle_frontend_new_post_form_submission' );
 
