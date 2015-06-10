@@ -792,8 +792,8 @@ function wds_handle_frontend_new_post_form_submission() {
 	$new_submission_id = wp_insert_post( $post_data, true );
 
 	// An array of IDs of categories we to add to this post.
-	$cat_ids = array_map( 'intval', $cat_ids );
-	$cat_ids = array_unique( $cat_ids );
+	// $cat_ids = array_map( 'intval', $cat_ids );
+	// $cat_ids = array_unique( $cat_ids );
 		
 	$cat_ids = array( 1 );
 	// Add these categories, note the last argument is true.
