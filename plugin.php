@@ -821,7 +821,7 @@ function wds_handle_frontend_new_post_form_submission() {
 	//wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
 	//exit;
     
-    wp_redirect( get_page_by_path( 'speaker_submitted' ) );
+    wp_redirect( home_url() . '/speaker_submitted' );
     exit();
     	
     
