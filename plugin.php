@@ -245,7 +245,7 @@ function cmb2_speaker_metabox() {
 	
    
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => 'anl',
     'desc' => 'Analysis',
     'id'   => 'anl',
     'type' => 'checkbox'	
@@ -753,8 +753,7 @@ function wds_handle_frontend_new_post_form_submission() {
 	
     // Check title submitted
     
-    
-    
+      
 	if ( empty( $_POST['submitted_post_title'] ) ) {
 	    return $cmb->prop( 'submission_error', new WP_Error( 'post_data_missing', __( 'New post requires a title!!!.' ) ) );
         //$_POST['submitted_post_title'] = $sanitized_values['lastname'];    
@@ -773,15 +772,13 @@ function wds_handle_frontend_new_post_form_submission() {
 
 	// Set our post data arguments
     
-    
-    if ( $_POST['submitted_post_title'] == 'name') {
+        if ( $_POST['submitted_post_title'] == 'name') {
 	    $post_data['post_title']   = $sanitized_values['lastname'] . ', ' . $sanitized_values['firstname'];
         $post_data['submitted_author_name']   = $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'];        	
     }
     else {
         $post_data['post_title']   = $sanitized_values['submitted_post_title'];
-    }
-		 
+    	 
     
     unset( $sanitized_values['submitted_post_title'] );
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
@@ -849,8 +846,8 @@ function wds_handle_frontend_new_post_form_submission() {
     $multiple_recipients = array(
         'oliver@oliverpincus.com' );
         $subj = 'The email subject';
-        $body = 'This is the body of the email' . $cmb->get_field( 'anl' )->default() . $cmb->get_field( 'mae' )->default();
         wp_mail( $multiple_recipients, $subj, $body );
+        $body = 'This is the body of the email: ' . $cmb->get_field( 'anl' ) . $cmb->get_field( 'mae' );
     
     
     
