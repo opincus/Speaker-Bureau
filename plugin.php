@@ -783,7 +783,7 @@ function wds_handle_frontend_new_post_form_submission() {
         'oliver@oliverpincus.com'
         );
         $subj = 'Speaker Submission';
-        $body = 'This is the body of the email: ' . $cmb->get_field( 'mae' );
+        $body = 'This is the body of the email: ' . $cmb->get_field( 'mae' )->default();
         wp_mail( $multiple_recipients, $subj, $body );
     
     
