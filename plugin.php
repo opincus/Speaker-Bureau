@@ -733,8 +733,8 @@ function wds_handle_frontend_new_post_form_submission() {
 
     
     
-    unset($cmb->get_field( 'anl' ));
-    unset($cmb->get_field( 'mae' ));
+    unset( $cmb->get_field( 'anl' ) );
+    unset( $cmb->get_field( 'mae' ) );
     
     
 	// Create the new post
