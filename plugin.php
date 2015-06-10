@@ -3,7 +3,7 @@
 * Plugin Name: Speaker Bureau
 * Plugin URI: http://oliverpincus.com
 * Description: This plugin adds some features for a Speaker database.
-* Version: 1.0.2
+* Version: 1.0.3
 * Author: Oliver Pincus
 * Author URI: http://oliverpincus.com
 * License: GPL2
