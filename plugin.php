@@ -792,9 +792,16 @@ function wds_handle_frontend_new_post_form_submission() {
 	$new_submission_id = wp_insert_post( $post_data, true );
 
 	// An array of IDs of categories we to add to this post.
+	$cat_ids = array_map( 'intval', $cat_ids );
+	$cat_ids = array_unique( $cat_ids );
+		
 	$cat_ids = array( 1 );
 	// Add these categories, note the last argument is true.
+	
 	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'category', true );
+	
+	$cat_ids = array( 4, 6 );
+	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
 		
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
