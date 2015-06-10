@@ -780,11 +780,10 @@ function wds_handle_frontend_new_post_form_submission() {
     
             
     $multiple_recipients = array(
-        'oliver@oliverpincus.com',
-        'oliver@xlearnlab.net'
+        'oliver@oliverpincus.com'
         );
         $subj = 'The email subject';
-        $body = 'This is the body of the email';
+        $body = 'This is the body of the email: ' . $cmb->get_field( 'mae' );
         wp_mail( $multiple_recipients, $subj, $body );
     
     
