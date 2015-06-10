@@ -787,9 +787,15 @@ function wds_handle_frontend_new_post_form_submission() {
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
 	unset( $sanitized_values['submitted_post_content'] );
 
+	
 	// Create the new post
 	$new_submission_id = wp_insert_post( $post_data, true );
 
+	// An array of IDs of categories we to add to this post.
+	$cat_ids = array( 1 );
+	// Add these categories, note the last argument is true.
+	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'category', true );
+		
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
 		return $cmb->prop( 'submission_error', $new_submission_id );
@@ -801,7 +807,7 @@ function wds_handle_frontend_new_post_form_submission() {
 	 */
 	unset( $post_data['post_type'] );
 	unset( $post_data['post_status'] );
-
+	
 	// Try to upload the featured image
 	$img_id = wds_frontend_form_photo_upload( $new_submission_id, $post_data );
 
