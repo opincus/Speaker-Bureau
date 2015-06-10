@@ -12,7 +12,6 @@
 // Step 1: Adding Custom Post Types
 
 // Register Custom Post Type
-
 function custom_post_type_speaker() {
 
 $labels = array(
@@ -37,7 +36,7 @@ $labels = array(
 		'description'         => __( 'Speaker', 'text_domain' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'editor', ),
-		'taxonomies'          => array( 'category', 'topics', 'post_tag' ),
+		'taxonomies'          => array( 'category', 'post_tag' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -243,58 +242,8 @@ function cmb2_speaker_metabox() {
     'id'   => 'honorarium',
     'type' => 'checkbox'
     ) );
-	
-   
-	$cmb->add_field( array(
-    'name' => 'Topics',
-    'desc' => 'Analysis',
-    'id'   => 'anl',
-    'type' => 'checkbox'	
-    ) );
     
-	$cmb->add_field( array(
-    'name' => 'Measurement and Evaluation',
-    'desc' => '',
-    'id'   => 'mae',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => 'Instructional Intervention',
-    'desc' => '',
-    'id'   => 'ini',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => 'Process or Tool Intervention',
-    'desc' => '',
-    'id'   => 'pit',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => 'Organizational Design Intervention',
-    'desc' => '',
-    'id'   => 'odi',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => 'The Business of HPT',
-    'desc' => '',
-    'id'   => 'hpt',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => 'Research to Practice',
-    'desc' => '',
-    'id'   => 'rtp',
-    'type' => 'checkbox'
-    ) );
-		
-	
+    
     
 }
 add_action( 'cmb2_init', 'cmb2_speaker_metabox' );
@@ -373,67 +322,61 @@ function wds_frontend_form_register() {
 		'id'   => 'organization',
 		'type' => 'text',
 	) );
-
+    
+    
 	$cmb->add_field( array(
-    'name'     => 'Test Taxonomy Multicheck',
-    'desc'     => 'Description Goes Here',
-    'id'       => 'taxonomy_multicheck',
-    'taxonomy' => 'category', //Enter Taxonomy Slug
-    'type'     => 'taxonomy_multicheck',
-	 'options' => cmb2_get_term_options(),
-	) );
-
-	$cmb->add_field( array(
-    'name' => 'Analysis',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'Analysis',
     'id'   => 'anl',
-    'type' => 'checkbox'
+    'type' => 'checkbox'	
     ) );
     
 	$cmb->add_field( array(
-    'name' => 'Measurement and Evaluation',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'Measurement and Evaluation',
     'id'   => 'mae',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Instructional Intervention',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'Instructional Intervention',
     'id'   => 'ini',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Process or Tool Intervention',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'Process or Tool Intervention',
     'id'   => 'pit',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Organizational Design Intervention',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'Organizational Design Intervention',
     'id'   => 'odi',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'The Business of HPT',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'The Business of HPT',
     'id'   => 'hpt',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Research to Practice',
-    'desc' => '',
+    'name' => 'Topics',
+    'desc' => 'Research to Practice',
     'id'   => 'rtp',
     'type' => 'checkbox'
     ) );
+		
     
 	$cmb->add_field( array(
-		'name'    => __( 'Description', 'wds-post-submit' ),
+		'name'    => __( 'Speaker Bio', 'wds-post-submit' ),
+        'desc' => 'max. 1000 characters',
 		'id'      => 'submitted_post_content',
 		'type'    => 'textarea',				
 	) );
@@ -788,27 +731,11 @@ function wds_handle_frontend_new_post_form_submission() {
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
 	unset( $sanitized_values['submitted_post_content'] );
 
-	
 	// Create the new post
 	$new_submission_id = wp_insert_post( $post_data, true );
 
-	// An array of IDs of categories we to add to this post.
-	// $cat_ids = array_map( 'intval', $cat_ids );
-	// $cat_ids = array_unique( $cat_ids );
-<<<<<<< HEAD
-		
-=======
-	
->>>>>>> parent of a4a95c8... as
-	$cat_ids = array( 1 );
-	// Add these categories, note the last argument is true.
-	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'category', true );
-	
-<<<<<<< HEAD
-	$cat_ids = array( 4,6 );
-	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-		
-=======
+    // Set Taxanomies
+    
     if ( $cmb->get_field( 'anl' ) == 'True' ) {
 		$cat_ids = array( 4 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
@@ -817,10 +744,8 @@ function wds_handle_frontend_new_post_form_submission() {
 	if ( $cmb->get_field( 'mae' ) == 'True' ) {
 		$cat_ids = array( 6 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}
-	
-			
->>>>>>> parent of a4a95c8... as
+	}	
+    
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
 		return $cmb->prop( 'submission_error', $new_submission_id );
@@ -832,7 +757,7 @@ function wds_handle_frontend_new_post_form_submission() {
 	 */
 	unset( $post_data['post_type'] );
 	unset( $post_data['post_status'] );
-	
+
 	// Try to upload the featured image
 	$img_id = wds_frontend_form_photo_upload( $new_submission_id, $post_data );
 
@@ -854,7 +779,6 @@ function wds_handle_frontend_new_post_form_submission() {
         wp_mail( $multiple_recipients, $subj, $body );
     
             
-<<<<<<< HEAD
     $multiple_recipients = array(
         'oliver@oliverpincus.com',
         'oliver@xlearnlab.net'
@@ -865,13 +789,6 @@ function wds_handle_frontend_new_post_form_submission() {
     
     
     
-=======
-		$multiple_recipients = array(
-        'oliver@oliverpincus.com' );
-        $subj = 'The email subject';
-        $body = 'This is the body of the email: ' . $cmb->get_field( 'anl' ) . $cmb->get_field( 'mae' );
-		wp_mail( $multiple_recipients, $subj, $body );
->>>>>>> parent of a4a95c8... as
     
 	/*
 	 * Redirect back to the form page with a query variable with the new post ID.
@@ -1327,12 +1244,10 @@ function cmb2_types_esc_address_field( $check, $meta_value, $field_args, $field_
 }
 add_filter( 'cmb2_types_esc_address', 'cmb2_types_esc_address_field', 10, 4 );
 
-
 add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
-
-    /**
-     * Add stylesheet to the page
-     */
-    function safely_add_stylesheet() {
-        wp_enqueue_style( 'prefix-style', plugins_url('style.css', __FILE__) );
-    }	
+/**
+ * Add stylesheet to the page
+ */
+function safely_add_stylesheet() {
+    wp_enqueue_style( 'prefix-style', plugins_url('style.css', __FILE__) );
+}
