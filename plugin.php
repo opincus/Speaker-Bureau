@@ -731,6 +731,12 @@ function wds_handle_frontend_new_post_form_submission() {
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
 	unset( $sanitized_values['submitted_post_content'] );
 
+    
+    
+    unset($cmb->get_field( 'anl' ));
+    unset($cmb->get_field( 'mae' ));
+    
+    
 	// Create the new post
 	$new_submission_id = wp_insert_post( $post_data, true );
 
@@ -743,8 +749,7 @@ function wds_handle_frontend_new_post_form_submission() {
 		$cat_ids = array( 6 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
 	
-	
-	
+		
     
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
@@ -783,7 +788,7 @@ function wds_handle_frontend_new_post_form_submission() {
         'oliver@oliverpincus.com'
         );
         $subj = 'Speaker Submission';
-        $body = 'This is the body of the email: ';
+        $body = 'This is the body of the email: ' . $cmb->get_field( 'mae' );
         wp_mail( $multiple_recipients, $subj, $body );
     
     
