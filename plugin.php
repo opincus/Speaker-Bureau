@@ -245,7 +245,7 @@ function cmb2_speaker_metabox() {
 	
    
 	$cmb->add_field( array(
-    'name' => 'anl',
+    'name' => 'Topics',
     'desc' => 'Analysis',
     'id'   => 'anl',
     'type' => 'checkbox'	
@@ -753,7 +753,8 @@ function wds_handle_frontend_new_post_form_submission() {
 	
     // Check title submitted
     
-      
+    
+    
 	if ( empty( $_POST['submitted_post_title'] ) ) {
 	    return $cmb->prop( 'submission_error', new WP_Error( 'post_data_missing', __( 'New post requires a title!!!.' ) ) );
         //$_POST['submitted_post_title'] = $sanitized_values['lastname'];    
@@ -772,13 +773,15 @@ function wds_handle_frontend_new_post_form_submission() {
 
 	// Set our post data arguments
     
-        if ( $_POST['submitted_post_title'] == 'name') {
+    
+    if ( $_POST['submitted_post_title'] == 'name') {
 	    $post_data['post_title']   = $sanitized_values['lastname'] . ', ' . $sanitized_values['firstname'];
         $post_data['submitted_author_name']   = $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'];        	
     }
     else {
         $post_data['post_title']   = $sanitized_values['submitted_post_title'];
-    	 
+    }
+		 
     
     unset( $sanitized_values['submitted_post_title'] );
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
@@ -791,14 +794,25 @@ function wds_handle_frontend_new_post_form_submission() {
 	// An array of IDs of categories we to add to this post.
 	// $cat_ids = array_map( 'intval', $cat_ids );
 	// $cat_ids = array_unique( $cat_ids );
-		
+	
+
+
+	
 	$cat_ids = array( 1 );
 	// Add these categories, note the last argument is true.
 	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'category', true );
 	
-	$cat_ids = array( 4,6 );
-	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+    if ( $cmb->get_field( 'anl' )->default() == 'True' ) {
+		$cat_ids = array( 4 );
+		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}
+	
+	if ( $cmb->get_field( 'mae' )->default() == 'True' ) {
+		$cat_ids = array( 6 );
+		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}
 		
+			
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
 		return $cmb->prop( 'submission_error', $new_submission_id );
@@ -833,16 +847,10 @@ function wds_handle_frontend_new_post_form_submission() {
     
             
     $multiple_recipients = array(
-        'oliver@oliverpincus.com',
-        'oliver@xlearnlab.net'
-        );
+        'oliver@oliverpincus.com' );
         $subj = 'The email subject';
-<<<<<<< HEAD
-=======
-        $body = 'This is the body of the email';
->>>>>>> parent of 2a43a6e... U
+        $body = 'This is the body of the email' . $cmb->get_field( 'anl' )->default() . $cmb->get_field( 'mae' )->default();
         wp_mail( $multiple_recipients, $subj, $body );
-        $body = 'This is the body of the email: ' . $cmb->get_field( 'anl' ) . $cmb->get_field( 'mae' );
     
     
     
