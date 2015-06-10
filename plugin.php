@@ -732,11 +732,6 @@ function wds_handle_frontend_new_post_form_submission() {
 	unset( $sanitized_values['submitted_post_content'] );
 
     
-    
-    unset( $cmb->get_field( 'anl' ) );
-    unset( $cmb->get_field( 'mae' ) );
-    
-    
 	// Create the new post
 	$new_submission_id = wp_insert_post( $post_data, true );
 
