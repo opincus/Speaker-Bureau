@@ -743,10 +743,36 @@ function wds_handle_frontend_new_post_form_submission() {
 	}
 	
     if ( $sanitized_values['mae'] == 'on' ) {    
+	   $cat_ids = array( 5 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['ini'] == 'on' ) {    
 	   $cat_ids = array( 6 );
 	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
 	}		
     
+    if ( $sanitized_values['pit'] == 'on' ) {    
+	   $cat_ids = array( 7 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['odi'] == 'on' ) {    
+	   $cat_ids = array( 8 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+
+    if ( $sanitized_values['hpt'] == 'on' ) {    
+	   $cat_ids = array( 9 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['rtp'] == 'on' ) {    
+	   $cat_ids = array( 10 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+        
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
 		return $cmb->prop( 'submission_error', $new_submission_id );
@@ -784,12 +810,10 @@ function wds_handle_frontend_new_post_form_submission() {
         'oliver@oliverpincus.com'
         );
         $subj = 'Speaker Submission';
-        $body = 'This is the body of the email: ' . $sanitized_values['mae'];
+        $body = 'New Speaker Submission received.' . "\n\n"
+        $body = $body . $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'] . "\n\n"                
         wp_mail( $multiple_recipients, $subj, $body );
-    
-    
-    
-    
+        
 	/*
 	 * Redirect back to the form page with a query variable with the new post ID.
 	 * This will help double-submissions with browser refreshes
