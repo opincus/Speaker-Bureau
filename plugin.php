@@ -811,7 +811,7 @@ function wds_handle_frontend_new_post_form_submission() {
         );
         $subj = 'Speaker Submission';
         $body = 'New Speaker Submission received.' . "\n\n"
-        $body = $body . $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'] . "\n\n"                
+        $body = $body . $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'] . "\n\n";             
         wp_mail( $multiple_recipients, $subj, $body );
         
 	/*
