@@ -794,14 +794,25 @@ function wds_handle_frontend_new_post_form_submission() {
 	// An array of IDs of categories we to add to this post.
 	// $cat_ids = array_map( 'intval', $cat_ids );
 	// $cat_ids = array_unique( $cat_ids );
-		
+	
+
+
+	
 	$cat_ids = array( 1 );
 	// Add these categories, note the last argument is true.
 	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'category', true );
 	
-	$cat_ids = array( 4,6 );
-	$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+    if ( $cmb->get_field( 'anl' )->default() == 'True' ) {
+		$cat_ids = array( 4 );
+		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}
+	
+	if ( $cmb->get_field( 'mae' )->default() == 'True' ) {
+		$cat_ids = array( 6 );
+		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}
 		
+			
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
 		return $cmb->prop( 'submission_error', $new_submission_id );
@@ -836,11 +847,9 @@ function wds_handle_frontend_new_post_form_submission() {
     
             
     $multiple_recipients = array(
-        'oliver@oliverpincus.com',
-        'oliver@xlearnlab.net'
-        );
+        'oliver@oliverpincus.com' );
         $subj = 'The email subject';
-        $body = 'This is the body of the email';
+        $body = 'This is the body of the email' . $cmb->get_field( 'anl' )->default() . $cmb->get_field( 'mae' )->default();
         wp_mail( $multiple_recipients, $subj, $body );
     
     
