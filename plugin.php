@@ -736,12 +736,12 @@ function wds_handle_frontend_new_post_form_submission() {
 
     // Set Taxanomies
     
-    if ( $cmb->get_field( 'anl' ) == 'True' ) {
+    if ( $cmb->get_field( 'anl' )->default() == 'True' ) {
 		$cat_ids = array( 4 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
 	}
 	
-	if ( $cmb->get_field( 'mae' ) == 'True' ) {
+	if ( $cmb->get_field( 'mae' )->default() == 'True' ) {
 		$cat_ids = array( 6 );
 		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
 	}	
@@ -782,8 +782,8 @@ function wds_handle_frontend_new_post_form_submission() {
     $multiple_recipients = array(
         'oliver@oliverpincus.com'
         );
-        $subj = 'The email subject';
-        $body = 'This is the body of the email: ' . $cmb->get_field( 'mae' );
+        $subj = 'Speaker Submission';
+        $body = 'This is the body of the email: ' . $cmb->get_field( 'mae' )->default();
         wp_mail( $multiple_recipients, $subj, $body );
     
     
