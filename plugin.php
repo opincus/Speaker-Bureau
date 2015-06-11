@@ -3,7 +3,7 @@
 * Plugin Name: Speaker Bureau
 * Plugin URI: http://oliverpincus.com
 * Description: This plugin adds some features for a Speaker database.
-* Version: 1.0.3
+* Version: 1.0.1
 * Author: Oliver Pincus
 * Author URI: http://oliverpincus.com
 * License: GPL2
@@ -324,6 +324,7 @@ function wds_frontend_form_register() {
 	) );
     
     
+  
 	$cmb->add_field( array(
     'name' => 'Topics',
     'desc' => 'Analysis',
@@ -372,11 +373,9 @@ function wds_frontend_form_register() {
     'id'   => 'rtp',
     'type' => 'checkbox'
     ) );
-		
     
 	$cmb->add_field( array(
-		'name'    => __( 'Speaker Bio', 'wds-post-submit' ),
-        'desc' => 'max. 1000 characters',
+		'name'    => __( 'Description', 'wds-post-submit' ),
 		'id'      => 'submitted_post_content',
 		'type'    => 'textarea',				
 	) );
@@ -731,48 +730,9 @@ function wds_handle_frontend_new_post_form_submission() {
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
 	unset( $sanitized_values['submitted_post_content'] );
 
-    
 	// Create the new post
 	$new_submission_id = wp_insert_post( $post_data, true );
 
-    // Set Taxanomies
-    
-    if ( $sanitized_values['anl'] == 'on' ) {
-	   $cat_ids = array( 4 );
-		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}
-	
-    if ( $sanitized_values['mae'] == 'on' ) {    
-	   $cat_ids = array( 5 );
-	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}		
-    
-    if ( $sanitized_values['ini'] == 'on' ) {    
-	   $cat_ids = array( 6 );
-	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}		
-    
-    if ( $sanitized_values['pit'] == 'on' ) {    
-	   $cat_ids = array( 7 );
-	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}		
-    
-    if ( $sanitized_values['odi'] == 'on' ) {    
-	   $cat_ids = array( 8 );
-	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}		
-
-    if ( $sanitized_values['hpt'] == 'on' ) {    
-	   $cat_ids = array( 9 );
-	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}		
-    
-    if ( $sanitized_values['rtp'] == 'on' ) {    
-	   $cat_ids = array( 10 );
-	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
-	}		
-    
-        
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
 		return $cmb->prop( 'submission_error', $new_submission_id );
@@ -807,24 +767,22 @@ function wds_handle_frontend_new_post_form_submission() {
     
             
     $multiple_recipients = array(
-        'oliver@oliverpincus.com'
+        'oliver@oliverpincus.com',
+        'oliver@xlearnlab.net'
         );
-        $subj = 'Speaker Submission';
-        $body = 'New Speaker Submission received.' . "\n\n";
-        $body = $body . $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'] . "\n\n";             
+        $subj = 'The email subject';
+        $body = 'This is the body of the email';
         wp_mail( $multiple_recipients, $subj, $body );
-        
+    
+    
+    
+    
 	/*
 	 * Redirect back to the form page with a query variable with the new post ID.
 	 * This will help double-submissions with browser refreshes
 	 */
-	//wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
-	//exit;
-    
-    wp_redirect( home_url() . '/speaker_submitted' );
-    exit();
-    	
-    
+	wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
+	exit;
 }
 add_action( 'cmb2_after_init', 'wds_handle_frontend_new_post_form_submission' );
 
@@ -1273,7 +1231,9 @@ function cmb2_types_esc_address_field( $check, $meta_value, $field_args, $field_
 }
 add_filter( 'cmb2_types_esc_address', 'cmb2_types_esc_address_field', 10, 4 );
 
+
 add_action( 'wp_enqueue_scripts', 'safely_add_stylesheet' );
+
 /**
  * Add stylesheet to the page
  */
