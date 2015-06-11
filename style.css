@@ -89,5 +89,6 @@ input[type="submit"]{
 }
 
 .search-subtitle{
+	margin-bottom: 0px;
 	font-size: 14px;
 }
