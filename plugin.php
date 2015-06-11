@@ -50,11 +50,9 @@ $labels = array(
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
         'rewrite' => array( 'slug' => 'speakers' ),
-        'supports' => array( 'title', 'editor' , 'thumbnail' ,'genesis-cpt-archives-settings'),
+        'supports' => array( 'title', 'editor' ,'genesis-cpt-archives-settings', 'thumbnail' ),
 	);
-	
 	register_post_type( 'speaker', $args );
-	add_post_type_support( 'speaker', 'genesis-cpt-archives-settings' );
 
 }
 
@@ -103,7 +101,7 @@ add_action( 'init', 'custom_taxonomy', 0 );
 // Step 2: Add custom fields
 // https://github.com/WebDevStudios/CMB2/wiki/Field-Types
 
-function 	() {
+function cmb2_speaker_metabox() {
 
     $cmb = new_cmb2_box( array(
         'id'           => 'cmb2_speaker_metabox',
