@@ -187,6 +187,13 @@ function cmb2_speaker_metabox() {
     'type' => 'text_email',
     ) );
    
+   $cmb->add_field( array(
+		'name' => __( 'Phone Number', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'phonenumber',
+		'type' => 'text',
+	) );
+	
     $cmb->add_field( array(
     'name' => __( 'Website URL', 'cmb' ),
     'id'   => 'website',
@@ -207,14 +214,7 @@ function cmb2_speaker_metabox() {
     'type' => 'text_url',
     // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
     ) );
-    
-    $cmb->add_field( array(
-		'name' => __( 'Phone Number', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
-		'id'   => 'phonenumber',
-		'type' => 'text',
-	) );
-    
+        
     $cmb->add_field( array(
 		'name' => __( 'Other Languages', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
@@ -243,7 +243,122 @@ function cmb2_speaker_metabox() {
     'type' => 'checkbox'
     ) );
     
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 1 Full Name', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_fullname',
+		'type' => 'text',
+        'before_row'   => '<br /><p>Provide the name and details of two endorsers and a testomonial from each endorser. The endorsers email and phone number are not publsihed. They are for the vetting process only.</p>',
+	) );
     
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 1 eMail', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_email',
+		'type' => 'text'        
+	) );
+	
+	$cmb->add_field( array(
+		'name' => __( 'Endorser 1 Phone Number', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_phonenumber',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 1 Organization', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_organization',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 1 Presentation Title', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_presentationtitle',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 1 Presentation Summary', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_presentationsummary',
+		'type' => 'textarea'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 1 Date of Presentation', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_presentationdate',
+		'type' => 'text'        
+	) );
+    
+        
+    $cmb->add_field( array(
+		'name'    => __( 'Endorser 1 Testomonial Quote', 'cmb' ),
+		'id'      => 'endorser1_testimonialquote',
+		'type'    => 'textarea',				
+	) );
+        
+    
+    
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 2 Full Name', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_fullname',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 2 eMail', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_email',
+		'type' => 'text'        
+	) );
+	
+	$cmb->add_field( array(
+		'name' => __( 'Endorser 2 Phone Number', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_phonenumber',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 2 Organization', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_organization',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 2 Presentation Title', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_presentationtitle',
+		'type' => 'text'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 2 Presentation Summary', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_presentationsummary',
+		'type' => 'textarea'        
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Endorser 2 Date of Presentation', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_presentationdate',
+		'type' => 'text'        
+	) );
+    
+        
+    $cmb->add_field( array(
+		'name'    => __( 'Endorser 2 Testomonial Quote', 'cmb' ),
+		'id'      => 'endorser2_testimonialquote',
+		'type'    => 'textarea',				
+	) );
+
     
 }
 add_action( 'cmb2_init', 'cmb2_speaker_metabox' );
@@ -277,6 +392,9 @@ function wds_frontend_form_register() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'lastname',
 		'type' => 'text',
+		 'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
        $cmb->add_field( array(
@@ -314,6 +432,9 @@ function wds_frontend_form_register() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'title',
 		'type' => 'text',
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
     $cmb->add_field( array(
@@ -321,6 +442,9 @@ function wds_frontend_form_register() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'organization',
 		'type' => 'text',
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
     
@@ -375,9 +499,12 @@ function wds_frontend_form_register() {
     ) );
     
 	$cmb->add_field( array(
-		'name'    => __( 'Description', 'wds-post-submit' ),
+		'name'    => __( 'Biography', 'wds-post-submit' ),
 		'id'      => 'submitted_post_content',
-		'type'    => 'textarea',				
+		'type'    => 'textarea',	
+		'attributes'  => array(
+              'required'    => 'required',
+        ),		
 	) );
         
     $cmb->add_field( array(
@@ -385,6 +512,9 @@ function wds_frontend_form_register() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'cmb_address',
 		'type' => 'address',
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
    
@@ -392,7 +522,20 @@ function wds_frontend_form_register() {
     'name' => 'Email',
     'id'   => 'email',
     'type' => 'text_email',
+	'attributes'  => array(
+              'required'    => 'required',
+        ),
     ) );
+	
+	$cmb->add_field( array(
+		'name' => __( 'Phone Number', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'phonenumber',
+		'type' => 'text',
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
+	) );
    
     $cmb->add_field( array(
     'name' => __( 'Website URL', 'cmb' ),
@@ -415,12 +558,7 @@ function wds_frontend_form_register() {
     // 'protocols' => array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet' ), // Array of allowed protocols
     ) );
     
-    $cmb->add_field( array(
-		'name' => __( 'Phone Number', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
-		'id'   => 'phonenumber',
-		'type' => 'text',
-	) );
+  
     
     $cmb->add_field( array(
 		'name' => __( 'Other Languages', 'cmb' ),
@@ -458,14 +596,16 @@ function wds_frontend_form_register() {
             'type' => 'file', // Let's use a standard file upload field
         ),
     ) );
-    
-    
+        
     $cmb->add_field( array(
 		'name' => __( 'Endorser 1 Full Name', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_fullname',
 		'type' => 'text',
         'before_row'   => '<br /><p>Provide the name and details of two endorsers and a testomonial from each endorser. The endorsers email and phone number are not publsihed. They are for the vetting process only.</p>',
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
     $cmb->add_field( array(
@@ -473,6 +613,19 @@ function wds_frontend_form_register() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_email',
 		'type' => 'text'        
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
+	) );
+	
+	$cmb->add_field( array(
+		'name' => __( 'Endorser 1 Phone Number', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser1_phonenumber',
+		'type' => 'text'        
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
     $cmb->add_field( array(
@@ -487,6 +640,9 @@ function wds_frontend_form_register() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_presentationtitle',
 		'type' => 'text'        
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
     $cmb->add_field( array(
@@ -524,6 +680,13 @@ function wds_frontend_form_register() {
 		'name' => __( 'Endorser 2 eMail', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser2_email',
+		'type' => 'text'        
+	) );
+	
+	$cmb->add_field( array(
+		'name' => __( 'Endorser 2 Phone Number', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'endorser2_phonenumber',
 		'type' => 'text'        
 	) );
     
