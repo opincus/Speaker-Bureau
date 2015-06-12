@@ -80,19 +80,13 @@ textarea#endorser2_presentationsummary {
 	 height: 100%; 
 }
 
+
+
+
 input[type="submit"]{
 	font-family: "Ek Mukta", sans-serif;
 }
 
 .cmb2-wrap.form-table{
 	margin-bottom: 20px;
-}
-
-.search-subtitle{
-	margin-bottom: 0px;
-	font-size: 14px;
-}
-
-.facetwp-facet {
-    margin-bottom: 20px;
 }

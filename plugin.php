@@ -248,7 +248,7 @@ function cmb2_speaker_metabox() {
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_fullname',
 		'type' => 'text',
-        'before_row'   => '<br /><p>Provide the name and details of two endorsers and a testomonial from each endorser. The endorsers email and phone number are not publsihed. They are for the vetting process only.</p>',
+        'before_row'   => '<br /><p>Provide the name and details of two endorsers and a testomonial from each endorser. The endorsers email and phone number are not published. They are for the vetting process only.</p>',
 	) );
     
     $cmb->add_field( array(
@@ -429,7 +429,7 @@ function wds_frontend_form_register() {
        
     $cmb->add_field( array(
 		'name' => __( 'Title', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
+		'desc' => __( 'Your title within the organization that you represent. If you are not part of an organization, list Sole Proprietor.', 'cmb' ),
 		'id'   => 'title',
 		'type' => 'text',
 		'attributes'  => array(
@@ -439,7 +439,7 @@ function wds_frontend_form_register() {
     
     $cmb->add_field( array(
 		'name' => __( 'Organization', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
+		'desc' => __( 'The name of the organization that you represent. If you are not part of an organization, list Sole Proprietor.', 'cmb' ),
 		'id'   => 'organization',
 		'type' => 'text',
 		'attributes'  => array(
@@ -453,46 +453,47 @@ function wds_frontend_form_register() {
     'name' => 'Topics',
     'desc' => 'Analysis',
     'id'   => 'anl',
-    'type' => 'checkbox'	
+    'type' => 'checkbox',	
+        'before_row'   => '<p>Select one or more of the ISPI presentation topics (same topics used in the ISPI conferences)</p>',
     ) );
     
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => '',
     'desc' => 'Measurement and Evaluation',
     'id'   => 'mae',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => '',
     'desc' => 'Instructional Intervention',
     'id'   => 'ini',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => '',
     'desc' => 'Process or Tool Intervention',
     'id'   => 'pit',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => '',
     'desc' => 'Organizational Design Intervention',
     'id'   => 'odi',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => '',
     'desc' => 'The Business of HPT',
     'id'   => 'hpt',
     'type' => 'checkbox'
     ) );
 	
 	$cmb->add_field( array(
-    'name' => 'Topics',
+    'name' => '',
     'desc' => 'Research to Practice',
     'id'   => 'rtp',
     'type' => 'checkbox'
@@ -520,6 +521,7 @@ function wds_frontend_form_register() {
    
     $cmb->add_field( array(
     'name' => 'Email',
+    'desc' => __( 'Your email will not appear in your public profile and is needed for ISPI volunteers to contact you as needed', 'cmb' ),
     'id'   => 'email',
     'type' => 'text_email',
 	'attributes'  => array(
@@ -529,12 +531,9 @@ function wds_frontend_form_register() {
 	
 	$cmb->add_field( array(
 		'name' => __( 'Phone Number', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
+		'desc' => __( 'Your phone number will not appear in your public profile and is needed for ISPI volunteers to contact you as needed', 'cmb' ),
 		'id'   => 'phonenumber',
-		'type' => 'text',
-		'attributes'  => array(
-              'required'    => 'required',
-        ),
+		'type' => 'text'
 	) );
    
     $cmb->add_field( array(
@@ -563,7 +562,7 @@ function wds_frontend_form_register() {
     $cmb->add_field( array(
 		'name' => __( 'Other Languages', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
-		'id'   => 'phonenumber',
+		'id'   => 'otherlanguages',
 		'type' => 'text',
 	) );
     
@@ -576,14 +575,14 @@ function wds_frontend_form_register() {
     
     $cmb->add_field( array(
     'name' => 'Webinar',
-    'desc' => 'Are you willing to present your content in a Webinar format?',
+    'desc' => 'Check if one or more of your presentations can be delivered in a webinar format (does not imply that all of your presentations are delivered in webinar format)',
     'id'   => 'webinar',
     'type' => 'checkbox'
     ) );
     
     $cmb->add_field( array(
-    'name' => 'Honorarium',
-    'desc' => 'Are you willing to present to chapters with no honorarium?',
+    'name' => 'Pro Bono',
+    'desc' => 'Many ISPI members present to chapters for free. Check if you are willing to present to Chapters with no honorarium. Negotiate travel and expenses with the Chapter.',
     'id'   => 'honorarium',
     'type' => 'checkbox'
     ) );
@@ -603,29 +602,23 @@ function wds_frontend_form_register() {
 		'id'   => 'endorser1_fullname',
 		'type' => 'text',
         'before_row'   => '<br /><p>Provide the name and details of two endorsers and a testomonial from each endorser. The endorsers email and phone number are not publsihed. They are for the vetting process only.</p>',
-		'attributes'  => array(
-              'required'    => 'required',
-        ),
+		
 	) );
     
     $cmb->add_field( array(
 		'name' => __( 'Endorser 1 eMail', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
+		'desc' => __( 'An ISPI volunteer will contact the endorser for follow-up questions either by email or phone.', 'cmb' ),
 		'id'   => 'endorser1_email',
-		'type' => 'text'        
-		'attributes'  => array(
-              'required'    => 'required',
-        ),
+		'type' => 'text',
+		
 	) );
 	
 	$cmb->add_field( array(
 		'name' => __( 'Endorser 1 Phone Number', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_phonenumber',
-		'type' => 'text'        
-		'attributes'  => array(
-              'required'    => 'required',
-        ),
+		'type' => 'text',        
+		
 	) );
     
     $cmb->add_field( array(
@@ -639,24 +632,24 @@ function wds_frontend_form_register() {
 		'name' => __( 'Endorser 1 Presentation Title', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_presentationtitle',
-		'type' => 'text'        
-		'attributes'  => array(
-              'required'    => 'required',
-        ),
+		'type' => 'text',        
+		
 	) );
     
     $cmb->add_field( array(
 		'name' => __( 'Endorser 1 Presentation Summary', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_presentationsummary',
-		'type' => 'textarea'        
+		'type' => 'textarea',        
+		
 	) );
     
     $cmb->add_field( array(
 		'name' => __( 'Endorser 1 Date of Presentation', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser1_presentationdate',
-		'type' => 'text'        
+		'type' => 'text',        
+		
 	) );
     
         
@@ -664,6 +657,7 @@ function wds_frontend_form_register() {
 		'name'    => __( 'Endorser 1 Testomonial Quote', 'cmb' ),
 		'id'      => 'endorser1_testimonialquote',
 		'type'    => 'textarea',				
+        
 	) );
         
     
@@ -673,14 +667,16 @@ function wds_frontend_form_register() {
 		'name' => __( 'Endorser 2 Full Name', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser2_fullname',
-		'type' => 'text'        
+		'type' => 'text',
+        
 	) );
     
     $cmb->add_field( array(
 		'name' => __( 'Endorser 2 eMail', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
+        'desc' => __( 'An ISPI volunteer will contact the endorser for follow-up questions either by email or phone.', 'cmb' ),		
 		'id'   => 'endorser2_email',
-		'type' => 'text'        
+		'type' => 'text',
+        
 	) );
 	
 	$cmb->add_field( array(
@@ -701,21 +697,24 @@ function wds_frontend_form_register() {
 		'name' => __( 'Endorser 2 Presentation Title', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser2_presentationtitle',
-		'type' => 'text'        
+		'type' => 'text',
+        
 	) );
     
     $cmb->add_field( array(
 		'name' => __( 'Endorser 2 Presentation Summary', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser2_presentationsummary',
-		'type' => 'textarea'        
+		'type' => 'textarea',        
+        
 	) );
     
     $cmb->add_field( array(
 		'name' => __( 'Endorser 2 Date of Presentation', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'endorser2_presentationdate',
-		'type' => 'text'        
+		'type' => 'text',
+        
 	) );
     
         
@@ -723,6 +722,7 @@ function wds_frontend_form_register() {
 		'name'    => __( 'Endorser 2 Testomonial Quote', 'cmb' ),
 		'id'      => 'endorser2_testimonialquote',
 		'type'    => 'textarea',				
+        
 	) );
 
     
@@ -891,10 +891,50 @@ function wds_handle_frontend_new_post_form_submission() {
     
     unset( $sanitized_values['submitted_post_title'] );
 	$post_data['post_content'] = $sanitized_values['submitted_post_content'];
-	unset( $sanitized_values['submitted_post_content'] );
+	 unset( $sanitized_values['submitted_post_content'] );
 
 	// Create the new post
 	$new_submission_id = wp_insert_post( $post_data, true );
+    
+     // Set Taxanomies
+    
+    if ( $sanitized_values['anl'] == 'on' ) {
+	   $cat_ids = array( 4 );
+		$term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}
+	
+    if ( $sanitized_values['mae'] == 'on' ) {    
+	   $cat_ids = array( 5 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['ini'] == 'on' ) {    
+	   $cat_ids = array( 6 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['pit'] == 'on' ) {    
+	   $cat_ids = array( 7 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['odi'] == 'on' ) {    
+	   $cat_ids = array( 8 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+
+    if ( $sanitized_values['hpt'] == 'on' ) {    
+	   $cat_ids = array( 9 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+    
+    if ( $sanitized_values['rtp'] == 'on' ) {    
+	   $cat_ids = array( 10 );
+	   $term_taxonomy_ids = wp_set_object_terms( $new_submission_id, $cat_ids, 'topics', true );
+	}		
+
+    
+    
 
 	// If we hit a snag, update the user
 	if ( is_wp_error( $new_submission_id ) ) {
@@ -926,26 +966,106 @@ function wds_handle_frontend_new_post_form_submission() {
         );
         $subj = 'Thanks for your Speaker Submission';
         $body = 'Dear ' .$sanitized_values['firstname'] . ",\n\n" .  'Thanks for your submission.';
-        wp_mail( $multiple_recipients, $subj, $body );
+        //wp_mail( $multiple_recipients, $subj, $body );
     
             
     $multiple_recipients = array(
-        'oliver@oliverpincus.com',
-        'oliver@xlearnlab.net'
+        'oliver@oliverpincus.com'
         );
-        $subj = 'The email subject';
-        $body = 'This is the body of the email';
+        $subj = 'ISPI Speaker Submission: ' . $sanitized_values['firstname'] . ' ' .$sanitized_values['lastname'];
+        $body =  $sanitized_values['firstname'] . ' ' .$sanitized_values['lastname'] . "\n\n";
+        $credentials =  $sanitized_values['credentials'] ;
+        if( credentials ): 
+            foreach( $credentials as $credential):
+                $body = $body . $credential . ' ' ;
+                endforeach;    
+                $body =  $body . '' . "\n\n";        
+        endif;                          
+        $body =  $body . $sanitized_values['othercredentials'] . "\n\n";
+        $body =  $body . $sanitized_values['title'] . ' ' .$sanitized_values['organization'] . "\n\n";
+    
+        // Set Taxanomies
+    
+        if ( $sanitized_values['anl'] == 'on' ) {
+           $body =  $body . 'Analysis ' . "\n\n";
+        }
+
+        if ( $sanitized_values['mae'] == 'on' ) {    
+           $body =  $body . 'Measurement and Evaluation' . "\n\n";
+        }		
+
+        if ( $sanitized_values['ini'] == 'on' ) {    
+           $body =  $body . 'Instructional Intervention' . "\n\n";
+        }		
+
+        if ( $sanitized_values['pit'] == 'on' ) {    
+              $body =  $body . 'Process or Tool Intervention' . "\n\n";
+        }		
+
+        if ( $sanitized_values['odi'] == 'on' ) {    
+           $body =  $body . 'Organizational Design Intervention' . "\n\n";
+        }		
+
+        if ( $sanitized_values['hpt'] == 'on' ) {    
+           $body =  $body . 'The Business of HPT' . "\n\n";
+        }		
+
+        if ( $sanitized_values['rtp'] == 'on' ) {    
+           $body =  $body . 'Research to Practice' . "\n\n";
+        }		
+    
+        $body =  $body . '' . "\n\n";
+        $body =  $body . $sanitized_values['email'] . "\n\n";
+        $body =  $body . $sanitized_values['phonenumber'] . "\n\n";
+    
+        $body =  $body . '' . "\n\n";
+        $body =  $body . $sanitized_values['address'] . "\n\n";
+                
+        $body =  $body . $sanitized_values['website'] . "\n\n";
+        $body =  $body . $sanitized_values['linkedin'] . "\n\n";
+        $body =  $body . $sanitized_values['twitter'] . "\n\n";
+        $body =  $body . $sanitized_values['otherlanguages'] . "\n\n";
+        if ( $sanitized_values['internationaltravel'] == 'on') {
+            $body =  $body . 'International Travel' . "\n\n";
+        } 
+        if ( $sanitized_values['webinar'] == 'on') {
+            $body =  $body . 'Webinar' . "\n\n";
+        } 
+        if ( $sanitized_values['honorarium'] == 'on') {
+            $body =  $body . 'Pro Bono' . "\n\n";
+        } 
+    
+        $body =  $body . '' . "\n\n";
+        $body =  $body . $post_data['post_content'] . "\n\n";
+        $body =  $body . '' . "\n\n";
+    
+        $body =  $body . '' . "\n\n";
+        $body =  $body . 'Endorser 1:' . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_fullname'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_email'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_phonenumber'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_organization'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_presentationtitle'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_presentationsummary'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser1_presentationdate'] . "\n\n";
+        $body =  $body . '' . "\n\n";
+        $body =  $body . 'Endorser 2:' . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_fullname'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_email'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_phonenumber'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_organization'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_presentationtitle'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_presentationsummary'] . "\n\n";
+        $body =  $body . $sanitized_values['endorser2_presentationdate'] . "\n\n";
+        
         wp_mail( $multiple_recipients, $subj, $body );
+        
+        //wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
+	   //exit;
     
+        wp_redirect( home_url() . '/speaker_submitted' );
+        exit();
     
-    
-    
-	/*
-	 * Redirect back to the form page with a query variable with the new post ID.
-	 * This will help double-submissions with browser refreshes
-	 */
-	wp_redirect( esc_url_raw( add_query_arg( 'post_submitted', $new_submission_id ) ) );
-	exit;
 }
 add_action( 'cmb2_after_init', 'wds_handle_frontend_new_post_form_submission' );
 
