@@ -460,7 +460,7 @@ function cmb2_presentation_metabox() {
     ) );    
       
 }
-add_action( 'cmb2_init', 'cmb2_speaker_metabox_presentation' );
+add_action( 'cmb2_init', 'cmb2_presentation_metabox' );
 
 // Step 3: Add Archive Settings option to Books CPT
 add_post_type_support( 'presentation', 'genesis-cpt-archives-settings' );
@@ -839,30 +839,16 @@ function wds_frontend_form_register() {
 		'type' => 'hidden'
 	) );
 
-
 }
 
-add_action( 'cmb2_init', 'wds_frontend_form_presentation_register' );
+add_action( 'cmb2_init', 'wds_frontend_form_register' );
 
-/**
- * Register the form and fields for our front-end submission form
- */
-function wds_frontend_form_presentation_register() {
+function wds_frontend_presentation_form_register() {
 	$cmb = new_cmb2_box( array(
-		'id'           => 'front-end-post-form',
+		'id'           => 'front-end-post-form-presentation',
 		'object_types' => array( 'post' ),
 		'hookup'       => false,
 		'save_fields'  => false,
-	) );
-    
-    $cmb->add_field( array(
-		'name' => __( 'Title', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
-		'id'   => 'posttitle',
-		'type' => 'text',
-		'attributes'  => array(
-              'required'    => 'required',
-        ),
 	) );
 
       $cmb->add_field( array(
@@ -883,91 +869,11 @@ function wds_frontend_form_presentation_register() {
 		 'attributes'  => array(
               'required'    => 'required',
         ),
-	) );
-    
-	$cmb->add_field( array(
-    'name' => 'Topics',
-    'desc' => 'Analysis',
-    'id'   => 'anl',
-    'type' => 'checkbox',	
-        'before_row'   => '<p>Select one or more of the ISPI presentation topics (same topics used in the ISPI conferences)</p>',
-    ) );
-    
-	$cmb->add_field( array(
-    'name' => '',
-    'desc' => 'Measurement and Evaluation',
-    'id'   => 'mae',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => '',
-    'desc' => 'Instructional Intervention',
-    'id'   => 'ini',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => '',
-    'desc' => 'Process or Tool Intervention',
-    'id'   => 'pit',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => '',
-    'desc' => 'Organizational Design Intervention',
-    'id'   => 'odi',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => '',
-    'desc' => 'The Business of HPT',
-    'id'   => 'hpt',
-    'type' => 'checkbox'
-    ) );
-	
-	$cmb->add_field( array(
-    'name' => '',
-    'desc' => 'Research to Practice',
-    'id'   => 'rtp',
-    'type' => 'checkbox'
-    ) );
-    
-	$cmb->add_field( array(
-		'name'    => __( 'Summary', 'wds-post-submit' ),
-		'id'      => 'submitted_post_content',
-		'type'    => 'textarea',	
-		'attributes'  => array(
-              'required'    => 'required',
-        ),		
-	) );
-        
-    $cmb->add_field( array(
-    'name' => 'Webinar',
-    'desc' => 'Check if one or more of your presentations can be delivered in a webinar format (does not imply that all of your presentations are delivered in webinar format)',
-    'id'   => 'webinar',
-    'type' => 'checkbox'
-    ) );
-    
-    $cmb->add_field( array(
-    'name' => 'Pro Bono',
-    'desc' => 'Many ISPI members present to chapters for free. Check if you are willing to present to Chapters with no honorarium. Negotiate travel and expenses with the Chapter.',
-    'id'   => 'honorarium',
-    'type' => 'checkbox'
-    ) );
-        
-	$cmb->add_field( array(
-		'name' => __( 'Your Name', 'wds-post-submit' ),
-		'desc' => __( 'Please enter your name for author credit on the new post.', 'wds-post-submit' ),
-		'id'   => 'submitted_author_name',
-		'type' => 'hidden'
-	) );
-
+	) );      
 }
 
-add_action( 'cmb2_init', 'wds_frontend_form_presentation_register' );
+add_action( 'cmb2_init', 'wds_frontend_presentation_form_register' );
+
 
 /**
  * Gets the front-end-post-form cmb instance
