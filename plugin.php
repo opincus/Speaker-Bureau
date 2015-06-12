@@ -59,6 +59,55 @@ $labels = array(
 // Hook into the 'init' action
 add_action( 'init', 'custom_post_type_speaker', 0 );
 
+// Register Custom Post Type
+function custom_post_type_presentation() {
+
+$labels = array(
+		'name'                => _x( 'Presentations', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Presentation', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Presentations', 'text_domain' ),
+		'name_admin_bar'      => __( 'Presentations', 'text_domain' ),
+		'parent_item_colon'   => __( 'Parent Presentation:', 'text_domain' ),
+		'all_items'           => __( 'All Presentations', 'text_domain' ),
+		'add_new_item'        => __( 'Add New Presentation', 'text_domain' ),
+		'add_new'             => __( 'Add New', 'text_domain' ),
+		'new_item'            => __( 'New Presentation', 'text_domain' ),
+		'edit_item'           => __( 'Edit Presentation', 'text_domain' ),
+		'update_item'         => __( 'Update Presentation', 'text_domain' ),
+		'view_item'           => __( 'View Presentation', 'text_domain' ),
+		'search_items'        => __( 'Search Presentation', 'text_domain' ),
+		'not_found'           => __( 'Not found', 'text_domain' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'text_domain' ),
+	);
+	$args = array(
+		'label'               => __( 'presentation', 'text_domain' ),
+		'description'         => __( 'Presentation', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', ),
+		'taxonomies'          => array( 'category', 'post_tag' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 5,
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => true,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+        'rewrite' => array( 'slug' => 'presentatuibs' ),
+        'supports' => array( 'title', 'editor' ,'genesis-cpt-archives-settings', 'thumbnail' ),
+	);
+	register_post_type( 'presentation', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'custom_post_type_presentation', 0 );
+
+
 // Register Custom Taxonomy
 function custom_taxonomy() {
 
@@ -91,7 +140,7 @@ function custom_taxonomy() {
 		'show_tagcloud'              => true,
         'rewrite'           => array( 'slug' => 'topics' ),
 	);
-	register_taxonomy( 'topics', array( 'speaker' ), $args );
+	register_taxonomy( 'topics', array( 'speaker' , 'presentation' ), $args );
 }
 
 // Hook into the 'init' action
@@ -366,6 +415,50 @@ add_action( 'cmb2_init', 'cmb2_speaker_metabox' );
 // Step 3: Add Archive Settings option to Books CPT
 add_post_type_support( 'speaker', 'genesis-cpt-archives-settings' );
 
+
+function cmb2_speaker_metabox_presentation() {
+
+    $cmb = new_cmb2_box( array(
+        'id'           => 'cmb2_speaker_metabox_presentation',
+        'title'        => 'Details',
+        'object_types' => array( 'presentation' ),
+    ) );
+
+    $cmb->add_field( array(
+		'name' => __( 'Firstname', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'firstname',
+		'type' => 'text',
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Lastname', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'lastname',
+		'type' => 'text',
+	) );
+   
+        
+   $cmb->add_field( array(
+    'name' => 'Webinar',
+    'desc' => '',
+    'id'   => 'webinar',
+    'type' => 'checkbox'
+    ) );
+    
+     $cmb->add_field( array(
+    'name' => 'Honorarium',
+    'desc' => 'Are you willing to present to chapters with no honorarium?',
+    'id'   => 'honorarium',
+    'type' => 'checkbox'
+    ) );    
+      
+}
+add_action( 'cmb2_init', 'cmb2_speaker_metabox_presentation' );
+
+// Step 3: Add Archive Settings option to Books CPT
+add_post_type_support( 'presentation', 'genesis-cpt-archives-settings' );
+
 /**
  * Register the form and fields for our front-end submission form
  */
@@ -376,15 +469,26 @@ function wds_frontend_form_register() {
 		'hookup'       => false,
 		'save_fields'  => false,
 	) );
-
-      $cmb->add_field( array(
-		'name' => __( 'Firstname', 'cmb' ),
+	
+	$cmb->add_field( array(
+		'name' => __( 'Title', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
-		'id'   => 'firstname',
+		'id'   => 'presentationtitle',
 		'type' => 'text',
         'attributes'  => array(
               'required'    => 'required',
         ),
+	) );
+ 
+
+	  $cmb->add_field( array(
+		'name' => __( 'Firstname', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'firstname',
+		'type' => 'text',
+		'attributes'  => array(
+			  'required'    => 'required',
+		),
 	) );
     
     $cmb->add_field( array(
@@ -745,6 +849,136 @@ function wds_frontend_form_register() {
 
 add_action( 'cmb2_init', 'wds_frontend_form_register' );
 
+
+
+/**
+ * Register the form and fields for our front-end submission form
+ */
+function wds_frontend_form_presentation_register() {
+	$cmb = new_cmb2_box( array(
+		'id'           => 'front-end-post-form',
+		'object_types' => array( 'post' ),
+		'hookup'       => false,
+		'save_fields'  => false,
+	) );
+
+      $cmb->add_field( array(
+		'name' => __( 'Firstname', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'firstname',
+		'type' => 'text',
+        'attributes'  => array(
+              'required'    => 'required',
+        ),
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Lastname', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'lastname',
+		'type' => 'text',
+		 'attributes'  => array(
+              'required'    => 'required',
+        ),
+	) );    
+         
+	$cmb->add_field( array(
+    'name' => 'Topics',
+    'desc' => 'Analysis',
+    'id'   => 'anl',
+    'type' => 'checkbox',	
+        'before_row'   => '<p>Select one or more of the ISPI presentation topics (same topics used in the ISPI conferences)</p>',
+    ) );
+    
+	$cmb->add_field( array(
+    'name' => '',
+    'desc' => 'Measurement and Evaluation',
+    'id'   => 'mae',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => '',
+    'desc' => 'Instructional Intervention',
+    'id'   => 'ini',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => '',
+    'desc' => 'Process or Tool Intervention',
+    'id'   => 'pit',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => '',
+    'desc' => 'Organizational Design Intervention',
+    'id'   => 'odi',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => '',
+    'desc' => 'The Business of HPT',
+    'id'   => 'hpt',
+    'type' => 'checkbox'
+    ) );
+	
+	$cmb->add_field( array(
+    'name' => '',
+    'desc' => 'Research to Practice',
+    'id'   => 'rtp',
+    'type' => 'checkbox'
+    ) );
+    
+	$cmb->add_field( array(
+		'name'    => __( 'Summary', 'wds-post-submit' ),
+		'id'      => 'submitted_post_content',
+		'type'    => 'textarea',	
+		'attributes'  => array(
+              'required'    => 'required',
+        ),		
+	) );        
+     
+    $cmb->add_field( array(
+    'name' => 'Webinar',
+    'desc' => 'Check if one or more of your presentations can be delivered in a webinar format (does not imply that all of your presentations are delivered in webinar format)',
+    'id'   => 'webinar',
+    'type' => 'checkbox'
+    ) );
+    
+    $cmb->add_field( array(
+    'name' => 'Pro Bono',
+    'desc' => 'Many ISPI members present to chapters for free. Check if you are willing to present to Chapters with no honorarium. Negotiate travel and expenses with the Chapter.',
+    'id'   => 'honorarium',
+    'type' => 'checkbox'
+    ) );    
+      
+    $cmb->add_field( array(
+		'name'    => __( 'Title', 'wds-post-submit' ),
+		'id'      => 'submitted_post_title',
+		'type'    => 'hidden',
+		'default' => __( 'name', 'wds-post-submit' )        
+	) );
+    
+	$cmb->add_field( array(
+		'name' => __( 'Your Name', 'wds-post-submit' ),
+		'desc' => __( 'Please enter your name for author credit on the new post.', 'wds-post-submit' ),
+		'id'   => 'submitted_author_name',
+		'type' => 'hidden'
+	) );
+
+
+}
+
+add_action( 'cmb2_init', 'wds_frontend_form_presentation_register' );
+
+
+
+
+
+
 /**
  * Gets the front-end-post-form cmb instance
  *
@@ -885,7 +1119,7 @@ function wds_handle_frontend_new_post_form_submission() {
         $post_data['submitted_author_name']   = $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'];        	
     }
     else {
-        $post_data['post_title']   = $sanitized_values['submitted_post_title'];
+        $post_data['post_title']   = $sanitized_values['posttitle'];
     }
 		 
     
