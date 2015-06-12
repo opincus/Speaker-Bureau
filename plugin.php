@@ -416,7 +416,7 @@ add_action( 'cmb2_init', 'cmb2_speaker_metabox' );
 add_post_type_support( 'speaker', 'genesis-cpt-archives-settings' );
 
 
-function cmb2_speaker_metabox_presentation() {
+function cmb2_presentation_metabox() {
 
     $cmb = new_cmb2_box( array(
         'id'           => 'cmb2_speaker_metabox_presentation',
@@ -438,6 +438,12 @@ function cmb2_speaker_metabox_presentation() {
 		'type' => 'text',
 	) );
    
+    $cmb->add_field( array(
+		'name' => __( 'Title', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'title',
+		'type' => 'text',
+	) );
         
    $cmb->add_field( array(
     'name' => 'Webinar',
@@ -469,26 +475,15 @@ function wds_frontend_form_register() {
 		'hookup'       => false,
 		'save_fields'  => false,
 	) );
-	
-	$cmb->add_field( array(
-		'name' => __( 'Title', 'cmb' ),
-		'desc' => __( '', 'cmb' ),
-		'id'   => 'presentationtitle',
-		'type' => 'text',
-        'attributes'  => array(
-              'required'    => 'required',
-        ),
-	) );
- 
 
-	  $cmb->add_field( array(
+      $cmb->add_field( array(
 		'name' => __( 'Firstname', 'cmb' ),
 		'desc' => __( '', 'cmb' ),
 		'id'   => 'firstname',
 		'type' => 'text',
-		'attributes'  => array(
-			  'required'    => 'required',
-		),
+        'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
     
     $cmb->add_field( array(
@@ -847,9 +842,7 @@ function wds_frontend_form_register() {
 
 }
 
-add_action( 'cmb2_init', 'wds_frontend_form_register' );
-
-
+add_action( 'cmb2_init', 'wds_frontend_form_presentation_register' );
 
 /**
  * Register the form and fields for our front-end submission form
@@ -860,6 +853,16 @@ function wds_frontend_form_presentation_register() {
 		'object_types' => array( 'post' ),
 		'hookup'       => false,
 		'save_fields'  => false,
+	) );
+    
+    $cmb->add_field( array(
+		'name' => __( 'Title', 'cmb' ),
+		'desc' => __( '', 'cmb' ),
+		'id'   => 'posttitle',
+		'type' => 'text',
+		'attributes'  => array(
+              'required'    => 'required',
+        ),
 	) );
 
       $cmb->add_field( array(
@@ -880,8 +883,8 @@ function wds_frontend_form_presentation_register() {
 		 'attributes'  => array(
               'required'    => 'required',
         ),
-	) );    
-         
+	) );
+    
 	$cmb->add_field( array(
     'name' => 'Topics',
     'desc' => 'Analysis',
@@ -939,8 +942,8 @@ function wds_frontend_form_presentation_register() {
 		'attributes'  => array(
               'required'    => 'required',
         ),		
-	) );        
-     
+	) );
+        
     $cmb->add_field( array(
     'name' => 'Webinar',
     'desc' => 'Check if one or more of your presentations can be delivered in a webinar format (does not imply that all of your presentations are delivered in webinar format)',
@@ -953,15 +956,8 @@ function wds_frontend_form_presentation_register() {
     'desc' => 'Many ISPI members present to chapters for free. Check if you are willing to present to Chapters with no honorarium. Negotiate travel and expenses with the Chapter.',
     'id'   => 'honorarium',
     'type' => 'checkbox'
-    ) );    
-      
-    $cmb->add_field( array(
-		'name'    => __( 'Title', 'wds-post-submit' ),
-		'id'      => 'submitted_post_title',
-		'type'    => 'hidden',
-		'default' => __( 'name', 'wds-post-submit' )        
-	) );
-    
+    ) );
+        
 	$cmb->add_field( array(
 		'name' => __( 'Your Name', 'wds-post-submit' ),
 		'desc' => __( 'Please enter your name for author credit on the new post.', 'wds-post-submit' ),
@@ -969,15 +965,9 @@ function wds_frontend_form_presentation_register() {
 		'type' => 'hidden'
 	) );
 
-
 }
 
 add_action( 'cmb2_init', 'wds_frontend_form_presentation_register' );
-
-
-
-
-
 
 /**
  * Gets the front-end-post-form cmb instance
@@ -1119,7 +1109,7 @@ function wds_handle_frontend_new_post_form_submission() {
         $post_data['submitted_author_name']   = $sanitized_values['firstname'] . ' ' . $sanitized_values['lastname'];        	
     }
     else {
-        $post_data['post_title']   = $sanitized_values['posttitle'];
+        $post_data['post_title']   = $sanitized_values['submitted_post_title'];
     }
 		 
     
